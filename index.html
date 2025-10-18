@@ -3,32 +3,321 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eunice’s Website</title>
+  <title>Medical Wellness Tourism</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', Arial, sans-serif;
+      background: #f5f5dc; /* beige */
+      color: #4b3f2a;      /* dark khaki/brown */
+      margin: 0;
+      padding: 0;
       text-align: center;
-      background: #f0f8ff;
-      color: #333;
+      min-height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
     }
     header {
-      background: #0a9396;
-      color: white;
-      padding: 20px;
-      font-size: 24px;
+      background: #f5f5dc; /* beige */
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+      box-sizing: border-box;
     }
-    section {
-      padding: 20px;
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f5f5dc; /* beige */
+      border-bottom: 1px solid #e3e1c9; /* light khaki */
+      padding: 10px 32px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    .logo {
+      font-size: 1.5rem;
+      color: #bfa76f; /* khaki/gold */
+      font-weight: 700;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lang-select {
+      border: 1px solid #e3e1c9;
+      border-radius: 4px;
+      padding: 4px 8px;
+      background: #f9f6e7; /* lighter beige */
+      font-size: 1rem;
+      color: #4b3f2a;
+    }
+    .main-navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 36px;
+      background: #d2b48c; /* tan/khaki */
+      color: #fff;
+      border-bottom: 1px solid #e3e1c9;
+      padding: 0 0 0 0;
+      font-size: 1.05rem;
+      width: 100%;
+      box-sizing: border-box;
+      position: static;
+      top: unset;
+      z-index: unset;
+      min-height: 48px;
+    }
+    .main-navbar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+    .main-navbar a:hover,
+    .main-navbar a.active {
+      color: #4b3f2a;
+      border-bottom: 2px solid #fff;
+    }
+    .hero {
+      background: url('hero-bg.jpg') center center / cover no-repeat, linear-gradient(90deg, #d2b48c 0%, #f5f5dc 100%);
+      color: #4b3f2a;
+      padding: 48px 0 32px 0;
+      text-align: center;
+      margin-bottom: 32px;
+      position: relative;
+      min-height: 340px;
+      background-attachment: fixed;
+    }
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      margin-bottom: 24px;
+    }
+    .hero-btn {
+      background: #fffbe6;
+      color: #bfa76f;
+      border: none;
+      border-radius: 24px;
+      padding: 12px 32px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(191,167,111,0.12);
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero-btn:hover {
+      background: #d2b48c;
+      color: #fffbe6;
+    }
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      max-width: 1100px;
+      margin: 0 auto 48px auto;
+      padding: 0 24px;
+    }
+    .card {
+      background: #fffbe6; /* light beige */
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(191,167,111,0.08); /* khaki shadow */
+      padding: 24px 18px 18px 18px;
+      text-align: left;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #bfa76f; /* khaki/gold */
+      margin-bottom: 10px;
+    }
+    .card-img {
+      width: 100%;
+      max-width: 220px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      align-self: center;
+      box-shadow: 0 2px 8px rgba(56,182,255,0.10);
+      object-fit: cover;
+      height: 120px;
+      background: #e3e1c9;
+    }
+    .card ul, .card p {
+      color: #4b3f2a;
+      margin: 0 0 10px 0;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .footer {
+      background: #bfa76f;
+      color: #fffbe6;
+      padding: 32px 0 18px 0;
+      text-align: center;
+      font-size: 1rem;
+      margin-top: 48px;
+    }
+    .footer a {
+      color: #4b3f2a;
+      text-decoration: underline;
+      margin: 0 8px;
+    }
+    @media (max-width: 700px) {
+      .topbar { background: #f5f5dc; }
+      .main-navbar { background: #d2b48c; }
+      .hero { background: linear-gradient(90deg, #d2b48c 0%, #f5f5dc 100%); }
+      .card { background: #fffbe6; }
+      .footer { background: #bfa76f; color: #fffbe6; }
+      .topbar { padding: 8px 8vw; }
+      .main-navbar { gap: 16px; font-size: 0.98rem; min-height: 42px; top: 48px; }
+      .hero { min-height: 180px; background-attachment: scroll; }
+      .hero-img { max-width: 98vw; height: auto; }
+      .card-img { max-width: 98vw; height: 90px; }
+      .hero { padding: 32px 0 18px 0; }
+      .hero-title { font-size: 1.3rem; }
+      .content-grid { grid-template-columns: 1fr; padding: 0 4vw; gap: 18px; }
+      .card { padding: 16px 10px 12px 10px; min-height: 180px; }
+      .footer { font-size: 0.95rem; padding: 18px 0 10px 0; }
+    }
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
 <body>
-  <header>🌿 Welcome to My Website</header>
-  <section>
-    <h2>About Me</h2>
-    <p>Hi! I’m Eunice, and this is my sample static website hosted on GitHub Pages.</p>
-    <h3>Contact</h3>
-    <p>Email: example@email.com</p>
+  <header>
+    <div class="topbar">
+      <div class="logo">🌱 MedWellTour</div>
+      <select class="lang-select">
+        <option>English</option>
+        <option>Korean</option>
+        <option>Chinese</option>
+        <option>Japanese</option>
+      </select>
+    </div>
+    <nav class="main-navbar">
+      <a href="#home" class="active">Home</a>
+      <a href="#medical-tourism">Medical Tourism</a>
+      <a href="#wellness">Wellness</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <section class="hero" id="home">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Medical Wellness" class="hero-img" />
+    <div class="hero-title">Medical Wellness Tourism in Asia & Beyond</div>
+    <div class="hero-desc">
+      Discover world-class medical care and holistic wellness experiences in beautiful destinations.<br>
+      Plan your journey to health, rejuvenation, and relaxation.
+    </div>
+    <a href="#medical-tourism"><button class="hero-btn">Explore Medical Tourism</button></a>
   </section>
+  <main>
+    <section id="medical-tourism" class="card">
+      <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80" alt="Medical Tourism" class="card-img" />
+      <div class="card-title">Medical Tourism</div>
+      <ul>
+        <li>Medical Checkups & Diagnostics</li>
+        <li>Rehabilitation & Recovery Programs</li>
+        <li>Advanced Medical Facilities</li>
+        <li>Personalized Health Consultations</li>
+      </ul>
+    </section>
+    <section id="wellness" class="card">
+      <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" alt="Wellness" class="card-img" />
+      <div class="card-title">Wellness</div>
+      <ul>
+        <li>Wellness Retreats & Spa Therapy</li>
+        <li>Holistic Treatments & Alternative Medicine</li>
+        <li>Yoga & Detox Programs</li>
+        <li>Ayurveda & Nature Therapy</li>
+      </ul>
+    </section>
+    <section id="destinations" class="card">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Destinations" class="card-img" />
+      <div class="card-title">Top Destinations</div>
+      <ul>
+        <li>Bali, Indonesia – Yoga & Detox Retreats</li>
+        <li>Bangkok, Thailand – Advanced Medical Facilities</li>
+        <li>Zurich, Switzerland – Luxury Wellness Clinics</li>
+        <li>Kerala, India – Ayurveda & Nature Therapy</li>
+        <li>Budapest, Hungary – Thermal Baths & Spas</li>
+      </ul>
+    </section>
+    <section id="about" class="card">
+      <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" alt="About Us" class="card-img" />
+      <div class="card-title">About Us</div>
+      <p>
+        We connect travelers with the best medical and wellness experiences worldwide.<br>
+        Our team curates safe, high-quality, and rejuvenating journeys for your health and happiness.
+      </p>
+    </section>
+    <section id="contact" class="card" style="max-width:520px;margin:0 auto;">
+      <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" alt="Contact" class="card-img" />
+      <div class="card-title">Contact Us</div>
+      <p>Email: info@wellnesstourism.com</p>
+      <p>Phone: +1 234 567 8901</p>
+      <p>Follow us on <a href="#">Instagram</a> | <a href="#">Facebook</a></p>
+    </section>
+  </main>
+  <footer class="footer">
+    &copy; 2024 MedWellTour | Email: info@wellnesstourism.com | 
+    <a href="#">Instagram</a> | <a href="#">Facebook</a>
+  </footer>
+  <script>
+    // Highlight active menu item on scroll
+    const sections = [
+      document.getElementById('home'),
+      document.getElementById('medical-tourism'),
+      document.getElementById('wellness'),
+      document.getElementById('destinations'),
+      document.getElementById('about'),
+      document.getElementById('contact')
+    ];
+    const navLinks = document.querySelectorAll('.main-navbar a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (!section) return;
+        const sectionTop = section.offsetTop - 100;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Smooth scroll for navigation links
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href').replace('#', '');
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          e.preventDefault();
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
